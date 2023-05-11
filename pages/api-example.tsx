@@ -1,13 +1,15 @@
 import Layout from "../components/layout"
+import { useSession } from "next-auth/react"
 
 export default function ApiExamplePage() {
+  const {data: session} = useSession();
   return (
     <Layout>
       <h1>API Example</h1>
       <p>The examples below show responses from the example API endpoints.</p>
-      <p>
+      {!session && <p>
         <em>You must be signed in to see responses.</em>
-      </p>
+      </p>}
       <h2>Session</h2>
       <p>/api/examples/session</p>
       <iframe src="/api/examples/session" />
